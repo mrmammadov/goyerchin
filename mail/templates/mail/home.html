@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'mail/css/style.css' %}">
+</head>
+<body>
+    <div class="content">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <label for="email_text">Email Text:</label>
+            <textarea id="email_text" name="email_text" rows="10" cols="50"></textarea>
+            <label for="email_to">Email to:</label>
+            <input type="text" id="email_to" name="email_to" placeholder="John.doe@gmail.com"><br><br>
+            <label for="email_from">Email from:</label>
+            <input type="text" id="email_from" name="email_from" placeholder="Jane.doe@gmail.com"><br><br>
+            <input type="submit" value="Send Email">
+        </form>
+    </div>
+</body>
+</html>
