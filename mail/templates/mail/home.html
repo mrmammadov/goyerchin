@@ -1,24 +1,27 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'mail/css/style.css' %}">
-</head>
-<body>
-    <div class="content">
+{% extends 'mail/base.html' %}
+{% block content %}
+    <div class="row mt-5">
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="email_text">Email Text:</label>
-            <textarea id="email_text" name="email_text" rows="10" cols="50"></textarea>
-            <label for="email_to">Email to:</label>
-            <input type="text" id="email_to" name="email_to" placeholder="John.doe@gmail.com"><br><br>
-            <label for="email_from">Email from:</label>
-            <input type="text" id="email_from" name="email_from" placeholder="Jane.doe@gmail.com"><br><br>
-            <input type="submit" value="Send Email">
+            <div class="row">
+                <div class="col-6">
+                    <div class="mb-3 form-group-row">
+                        <label for="email_text" class="form-label">Example textarea</label>
+                        <textarea class="form-control" id="email_text" name="email_text" rows="10" cols='50'></textarea>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="mb-3 form-group-row">
+                        <label for="email_to" class="form-label">Email To</label>
+                        <input type="text" class="form-control" id="email_to" name='email_to' aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3 form-group-row">
+                        <label for="email_from" class="form-label">Email From</label>
+                        <input type="email" class="form-control" id="email_from" name='email_from' aria-describedby="emailHelp">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
         </form>
     </div>
-</body>
-</html>
+{% endblock %}

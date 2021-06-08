@@ -1,6 +1,7 @@
 import argparse
 import smtplib
 import os
+import re
 import sys
 
 # Environment Variables
@@ -42,7 +43,13 @@ def send_email(email_from, email_to, mail):
 
         smtp.login(email, password)
 
-        for e in email_to:
-            smtp.sendmail(email_from, e, mail)
+        pattern = re.compile(r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+        match = re.match(pattern, email_from)
+
+        if match:
+            for e in email_to:
+                smtp.sendmail(email_from, e, mail)
+        else:
+            return 'Incorrect email format!'
 
     print('Email sent!')
